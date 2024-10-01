@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches: [demo-2]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+      - name: Checkout pokecrystal
+        uses: actions/checkout@v4
+        with:
+          path: pokecrystal
+          ref: 6f226f
+          repository: pret/pokecrystal
+      - name: Checkout rgbds
+        uses: actions/checkout@v4
+        with:
+          path: rgbds
+          ref: 0.4.1
+          repository: gbdev/rgbds
