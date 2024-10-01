@@ -15,13 +15,15 @@ jobs:
         with:
           path: pokecrystal
           repository: pret/pokecrystal
+      - name: Debug
+        run: |
+          ls
+          ls pokecrystal
+          ls pokeoctober
       - name: Move pokecrystal to an old commit
         run: |
           cd pokecrystal
           git checkout 6f226f584c
-      - name: Debug
-        run: |
-          ls
       - name: Checkout rgbds
         uses: actions/checkout@v4
         with:
