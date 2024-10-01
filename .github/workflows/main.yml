@@ -33,9 +33,7 @@ jobs:
       - name: Make pokeoctober
         working-directory: pokeoctober
         run: |
-          cp ../pokecrystal/pokecrystal11.gbc baserom.gbc
-          make -j$(nproc) pokeoctober-v.`git describe --always --abbrev=8 --dirty='!' | 
-awk -F "-" '{print $1}'`.ips
+          bash .github/scripts/build.sh
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
