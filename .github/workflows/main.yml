@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: pokecrystal
-          ref: 6f226f
+          ref: 6f226f584c
           repository: pret/pokecrystal
       - name: Checkout rgbds
         uses: actions/checkout@v4
