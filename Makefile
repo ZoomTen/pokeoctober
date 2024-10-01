@@ -113,7 +113,11 @@ patch: pokeoctober-v.$(GIT_VERSION).ips
 pokeoctober-v.$(GIT_VERSION).ips: pokeoctober.gbc baserom.gbc
 # check if baserom == crystal 1.1
 	[ $(shell sha1sum -b baserom.gbc | cut -c 1-40) = f2f52230b536214ef7c9924f483392993e226cfb ]
-	$(IPSPATCH) $(IPSPATCH_COMMAND) baserom.gbc pokeoctober.gbc $@
+	$(IPSPATCH) $(IPSPATCH_COMMAND) baserom.gbc $< $@
+
+pokeoctober-v.$(GIT_VERSION)-debug.ips: pokeoctober_debug.gbc baserom.gbc
+	[ $(shell sha1sum -b baserom.gbc | cut -c 1-40) = f2f52230b536214ef7c9924f483392993e226cfb ]
+	$(IPSPATCH) $(IPSPATCH_COMMAND) baserom.gbc $< $@
 
 poke%.gbc: $$(%_obj) pokeoctober.link
 	$(RGBLINK) -n poke$*.sym -m poke$*.map -l pokeoctober.link -o $@ $(filter %.o,$^)

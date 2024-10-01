@@ -33,7 +33,12 @@ jobs:
       - name: Make pokeoctober
         working-directory: pokeoctober
         run: |
-          bash .github/scripts/build.sh
+          bash .github/scripts/build-patch.sh
+      - name: Make pokeoctober debug
+        working-directory: pokeoctober
+        if: ${{ contains(github.ref, '.pre') }}
+        run: |
+          bash .github/scripts/build-debug-patch.sh
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
