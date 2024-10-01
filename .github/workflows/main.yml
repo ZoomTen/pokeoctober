@@ -17,8 +17,21 @@ jobs:
           cd pokecrystal
           git checkout 6f226f584c
       - name: Checkout rgbds
+        # the caveman method always works
+        run: |
+          git clone https://github.com/gbdev/rgbds
+          cd rgbds
+          git checkout 0.4.1
         uses: actions/checkout@v4
         with:
           path: rgbds
-          ref: 0.4.1
+          ref: v0.4.1
           repository: gbdev/rgbds
+      - name: Install rgbds
+        working-directory: rgbds
+        run: |
+          sudo make install
+      - name: Make
+        working-directory: pokeoctober
+        run: |
+          make -j$(nproc) pokeoctober.gbc
