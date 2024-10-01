@@ -26,7 +26,19 @@ jobs:
         working-directory: rgbds
         run: |
           sudo make install
-      - name: Make
+      - name: Make pokecrystal (as baserom)
+        working-directory: pokecrystal
+        run: |
+          make -j$(nproc) pokecrystal11.gbc
+      - name: Make pokeoctober
         working-directory: pokeoctober
         run: |
-          make -j$(nproc) pokeoctober.gbc
+          cp ../pokecrystal/pokecrystal11.gbc baserom.gbc
+          make -j$(nproc) pokeoctober-v.`git describe --always --abbrev=8 --dirty='!' | 
+awk -F "-" '{print $1}'`.ips
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: patch
+          path: |
+            pokeoctober/*.ips
