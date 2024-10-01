@@ -35,6 +35,8 @@ jobs:
         working-directory: flips
         run: |
           bash make-linux.sh
+        env:
+          TARGET: cli
       - name: Make pokecrystal (as baserom)
         working-directory: pokecrystal
         run: |
