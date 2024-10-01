@@ -22,10 +22,19 @@ jobs:
           path: rgbds
           ref: v0.4.1
           repository: gbdev/rgbds
+      - name: Shoutout to SimpleFLIPS
+        uses: actions/checkout@v4
+        with:
+          path: flips
+          repository: Alcaro/Flips
       - name: Install rgbds
         working-directory: rgbds
         run: |
           sudo make install
+      - name: Build FLIPS
+        working-directory: flips
+        run: |
+          bash make-linux.sh
       - name: Make pokecrystal (as baserom)
         working-directory: pokecrystal
         run: |
