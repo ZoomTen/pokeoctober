@@ -8,12 +8,20 @@ jobs:
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v4
+        with:
+          path: pokeoctober
       - name: Checkout pokecrystal
         uses: actions/checkout@v4
         with:
           path: pokecrystal
-          ref: 6f226f584c
           repository: pret/pokecrystal
+      - name: Move pokecrystal to an old commit
+        run: |
+          cd pokecrystal
+          git checkout 6f226f584c
+      - name: Debug
+        run: |
+          ls
       - name: Checkout rgbds
         uses: actions/checkout@v4
         with:
