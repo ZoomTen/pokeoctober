@@ -8,9 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main repo
-        uses: actions/checkout@v4
-        with:
-          path: pokeoctober
+        run: |
+          git clone ${{ github.server_url }}/${{ github.repository }}
       - name: Checkout an old pokecrystal commit
         # can't get actions/checkout to check an old commit...
         run: |
