@@ -10,18 +10,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: pokeoctober
-      - name: Checkout pokecrystal
-        uses: actions/checkout@v4
-        with:
-          path: pokecrystal
-          repository: pret/pokecrystal
-      - name: Debug
+      - name: Checkout an old pokecrystal commit
+        # can't get actions/checkout to check an old commit...
         run: |
-          ls
-          ls pokecrystal
-          ls pokeoctober
-      - name: Move pokecrystal to an old commit
-        run: |
+          git clone https://github.com/pret/pokecrystal
           cd pokecrystal
           git checkout 6f226f584c
       - name: Checkout rgbds
